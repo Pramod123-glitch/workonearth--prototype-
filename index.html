@@ -1,0 +1,2006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WorkOnEarth - Find Your Perfect Job Anywhere</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8fafc;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        :root {
+            --primary-blue: #2196F3;
+            --primary-black: #1a1a1a;
+            --secondary-blue: #64B5F6;
+            --light-blue: #E3F2FD;
+            --dark-blue: #1976D2;
+            --gray-100: #f8fafc;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e0;
+            --gray-600: #718096;
+            --gray-800: #2d3748;
+        }
+        
+        .header {
+            background: white;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--primary-blue);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 20px;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .logo {
+            width: 40px;
+            height: 40px;
+            margin-right: 12px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(33, 150, 243, 0.3);
+        }
+        
+        .logo::before {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 12px;
+            background: var(--primary-black);
+            border-radius: 12px 12px 0 0;
+            top: 8px;
+        }
+        
+        .logo::after {
+            content: '';
+            position: absolute;
+            width: 28px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+            bottom: 12px;
+            box-shadow: 0 4px 0 white;
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        .logo-work {
+            color: var(--primary-blue);
+        }
+        
+        .logo-on {
+            color: var(--primary-black);
+        }
+        
+        .logo-earth {
+            color: var(--primary-blue);
+        }
+        
+        .nav-search {
+            position: relative;
+            flex: 1;
+            max-width: 400px;
+            margin: 0 20px;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 12px 20px 12px 45px;
+            border: 2px solid var(--gray-200);
+            border-radius: 25px;
+            font-size: 14px;
+            background: var(--gray-100);
+            transition: all 0.3s ease;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray-600);
+            font-size: 16px;
+        }
+        
+        .voice-search-btn {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .voice-search-btn:hover {
+            background: var(--dark-blue);
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .voice-search-btn.listening {
+            background: #4CAF50;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: translateY(-50%) scale(1); }
+            50% { transform: translateY(-50%) scale(1.2); }
+            100% { transform: translateY(-50%) scale(1); }
+        }
+        
+        .nav-icons {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--gray-600);
+            font-size: 12px;
+            transition: all 0.3s;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .nav-item:hover {
+            color: var(--primary-blue);
+            background: var(--light-blue);
+        }
+        
+        .nav-item.active {
+            color: var(--primary-blue);
+            background: var(--light-blue);
+        }
+        
+        .nav-item .icon {
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            background: #FF4444;
+            color: white;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .language-switcher {
+            margin-left: 20px;
+        }
+        
+        .language-switcher select {
+            padding: 8px 12px;
+            border: 2px solid var(--gray-200);
+            border-radius: 6px;
+            background: white;
+            font-size: 12px;
+            color: var(--gray-800);
+            cursor: pointer;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 280px 1fr 320px;
+            gap: 20px;
+        }
+        
+        .sidebar {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            height: fit-content;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border: 1px solid var(--gray-200);
+        }
+        
+        .main-content {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border: 1px solid var(--gray-200);
+        }
+        
+        .right-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border: 1px solid var(--gray-200);
+        }
+        
+        .profile-section {
+            text-align: center;
+            border-bottom: 1px solid var(--gray-200);
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .profile-pic {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            border: 3px solid white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .profile-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: var(--gray-800);
+        }
+        
+        .profile-title {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        .profile-views {
+            color: var(--primary-blue);
+            font-size: 0.8rem;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        
+        .profile-views:hover {
+            background: var(--light-blue);
+        }
+        
+        .nav-menu {
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            padding: 12px 8px;
+            border-bottom: 1px solid var(--gray-200);
+            cursor: pointer;
+            transition: all 0.3s;
+            border-radius: 6px;
+            margin-bottom: 2px;
+        }
+        
+        .nav-menu li:hover {
+            color: var(--primary-blue);
+            background: var(--light-blue);
+        }
+        
+        .nav-menu li.active {
+            color: var(--primary-blue);
+            background: var(--light-blue);
+            font-weight: 600;
+        }
+        
+        .nav-menu li .icon {
+            margin-right: 12px;
+            width: 20px;
+            display: inline-block;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid var(--gray-200);
+            margin-bottom: 24px;
+        }
+        
+        .tab {
+            padding: 12px 20px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+            font-weight: 500;
+            color: var(--gray-600);
+        }
+        
+        .tab.active {
+            border-bottom-color: var(--primary-blue);
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+        
+        .tab:hover {
+            color: var(--primary-blue);
+            background: var(--light-blue);
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease-in;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .post-composer {
+            border: 2px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 24px;
+            background: var(--gray-100);
+            transition: all 0.3s;
+        }
+        
+        .post-composer:focus-within {
+            border-color: var(--primary-blue);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+        }
+        
+        .post-input {
+            width: 100%;
+            border: none;
+            background: none;
+            font-size: 16px;
+            padding: 12px;
+            resize: none;
+            min-height: 80px;
+            color: var(--gray-800);
+        }
+        
+        .post-input:focus {
+            outline: none;
+        }
+        
+        .post-input::placeholder {
+            color: var(--gray-600);
+        }
+        
+        .post-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--gray-200);
+        }
+        
+        .post-buttons {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .post-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            border: none;
+            background: none;
+            color: var(--gray-600);
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+        
+        .post-btn:hover {
+            background: var(--light-blue);
+            color: var(--primary-blue);
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background: var(--primary-blue);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: var(--dark-blue);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--light-blue);
+            transform: translateY(-1px);
+        }
+        
+        .voice-btn {
+            background: linear-gradient(45deg, var(--primary-blue), var(--dark-blue));
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        
+        .voice-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+        }
+        
+        .voice-btn.listening {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            animation: pulse 1.5s infinite;
+        }
+        
+        .feed-item {
+            border-bottom: 1px solid var(--gray-200);
+            padding: 24px 0;
+            margin-bottom: 20px;
+        }
+        
+        .feed-item:last-child {
+            border-bottom: none;
+        }
+        
+        .feed-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        
+        .feed-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            border: 2px solid white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .feed-info h4 {
+            margin: 0 0 2px 0;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--gray-800);
+        }
+        
+        .feed-info p {
+            margin: 0;
+            color: var(--gray-600);
+            font-size: 12px;
+        }
+        
+        .feed-content {
+            margin-bottom: 16px;
+            line-height: 1.6;
+            color: var(--gray-800);
+        }
+        
+        .feed-actions {
+            display: flex;
+            gap: 24px;
+        }
+        
+        .feed-action {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--gray-600);
+            font-size: 14px;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+        
+        .feed-action:hover {
+            background: var(--light-blue);
+            color: var(--primary-blue);
+        }
+        
+        .job-card {
+            border: 2px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+            background: white;
+        }
+        
+        .job-card:hover {
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            border-color: var(--primary-blue);
+            transform: translateY(-2px);
+        }
+        
+        .job-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 8px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        
+        .job-title:hover {
+            color: var(--dark-blue);
+            text-decoration: underline;
+        }
+        
+        .job-company {
+            color: var(--gray-800);
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        
+        .job-location {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+        }
+        
+        .job-description {
+            color: var(--gray-700);
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+        
+        .job-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .skill-tag {
+            background: var(--light-blue);
+            color: var(--dark-blue);
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid var(--secondary-blue);
+        }
+        
+        .job-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        
+        .match-score {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+        }
+        
+        .job-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .connections-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .connection-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--gray-200);
+            cursor: pointer;
+            transition: all 0.3s;
+            border-radius: 6px;
+            margin-bottom: 2px;
+            padding: 12px 8px;
+        }
+        
+        .connection-item:hover {
+            background: var(--light-blue);
+        }
+        
+        .connection-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .connection-info {
+            flex: 1;
+        }
+        
+        .connection-name {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 2px;
+            color: var(--gray-800);
+        }
+        
+        .connection-title {
+            color: var(--gray-600);
+            font-size: 12px;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4CAF50;
+            margin-left: 8px;
+        }
+        
+        .ai-assistant {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: linear-gradient(45deg, var(--primary-blue), var(--dark-blue));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 16px 24px;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(33, 150, 243, 0.3);
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+        
+        .ai-assistant:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 32px rgba(33, 150, 243, 0.4);
+        }
+        
+        .ai-chat {
+            position: fixed;
+            bottom: 90px;
+            right: 24px;
+            width: 360px;
+            height: 480px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 16px 48px rgba(0,0,0,0.2);
+            display: none;
+            flex-direction: column;
+            z-index: 1000;
+            border: 2px solid var(--primary-blue);
+        }
+        
+        .ai-chat.active {
+            display: flex;
+            animation: slideUp 0.3s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .ai-chat-header {
+            padding: 20px;
+            background: linear-gradient(45deg, var(--primary-blue), var(--dark-blue));
+            color: white;
+            border-radius: 14px 14px 0 0;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .ai-chat-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        
+        .ai-chat-close:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .ai-chat-body {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: var(--gray-100);
+        }
+        
+        .ai-message {
+            margin-bottom: 16px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            background: white;
+            border-left: 4px solid var(--primary-blue);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        
+        .ai-chat-input {
+            display: flex;
+            padding: 20px;
+            gap: 12px;
+            border-top: 1px solid var(--gray-200);
+            background: white;
+            border-radius: 0 0 14px 14px;
+        }
+        
+        .ai-chat-input input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid var(--gray-200);
+            border-radius: 25px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        
+        .ai-chat-input input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+        }
+        
+        .ai-chat-input button {
+            padding: 12px 20px;
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .ai-chat-input button:hover {
+            background: var(--dark-blue);
+        }
+        
+        .messaging-preview {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .message-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 8px;
+            cursor: pointer;
+            border-bottom: 1px solid var(--gray-200);
+            border-radius: 6px;
+            margin-bottom: 2px;
+            transition: all 0.3s;
+        }
+        
+        .message-item:hover {
+            background: var(--light-blue);
+        }
+        
+        .message-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .message-content {
+            flex: 1;
+        }
+        
+        .message-name {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 2px;
+            color: var(--gray-800);
+        }
+        
+        .message-preview {
+            color: var(--gray-600);
+            font-size: 12px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        
+        .message-time {
+            color: var(--gray-500);
+            font-size: 11px;
+        }
+        
+        .notification-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 8px;
+            border-bottom: 1px solid var(--gray-200);
+            cursor: pointer;
+            transition: all 0.3s;
+            border-radius: 6px;
+            margin-bottom: 2px;
+        }
+        
+        .notification-item:hover {
+            background: var(--light-blue);
+        }
+        
+        .notification-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--light-blue);
+            color: var(--primary-blue);
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+        
+        .notification-content {
+            flex: 1;
+        }
+        
+        .notification-text {
+            font-size: 14px;
+            margin-bottom: 2px;
+            color: var(--gray-800);
+        }
+        
+        .notification-time {
+            color: var(--gray-600);
+            font-size: 12px;
+        }
+        
+        @media (max-width: 1024px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            
+            .nav-icons {
+                gap: 15px;
+            }
+            
+            .nav-item {
+                font-size: 10px;
+            }
+            
+            .ai-chat {
+                width: 320px;
+                height: 400px;
+                right: 16px;
+                bottom: 80px;
+            }
+            
+            .ai-assistant {
+                right: 16px;
+                bottom: 16px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-search {
+                display: none;
+            }
+            
+            .logo-text {
+                font-size: 1.4rem;
+            }
+            
+            .job-actions {
+                flex-direction: column;
+            }
+            
+            .job-meta {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="nav-container">
+            <a href="#" class="logo-container" onclick="showTab('feed')">
+                <div class="logo"></div>
+                <div class="logo-text">
+                    <span class="logo-work">Work</span><span class="logo-on">On</span><span class="logo-earth">Earth</span>
+                </div>
+            </a>
+            <div class="nav-search">
+                <div class="search-icon">🔍</div>
+                <input type="text" class="search-input" placeholder="Search jobs, people, companies..." id="globalSearch">
+                <button class="voice-search-btn" id="voiceSearchBtn">🎤</button>
+            </div>
+            <div class="nav-icons">
+                <a href="#" class="nav-item" onclick="showTab('feed')" data-tab="feed">
+                    <div class="icon">🏠</div>
+                    <span>Home</span>
+                </a>
+                <a href="#" class="nav-item" onclick="showTab('network')" data-tab="network">
+                    <div class="icon">👥</div>
+                    <span>Network</span>
+                </a>
+                <a href="#" class="nav-item" onclick="showTab('jobs')" data-tab="jobs">
+                    <div class="icon">💼</div>
+                    <span>Jobs</span>
+                </a>
+                <a href="#" class="nav-item" onclick="showTab('messages')" data-tab="messages">
+                    <div class="icon">💬</div>
+                    <span>Messages</span>
+                    <div class="notification-badge">3</div>
+                </a>
+                <a href="#" class="nav-item" onclick="showTab('notifications')" data-tab="notifications">
+                    <div class="icon">🔔</div>
+                    <span>Notifications</span>
+                    <div class="notification-badge">5</div>
+                </a>
+            </div>
+            <div class="language-switcher">
+                <select id="languageSelect" onchange="changeLanguage()">
+                    <option value="en">English</option>
+                    <option value="es">Español</option>
+                    <option value="fr">Français</option>
+                    <option value="de">Deutsch</option>
+                    <option value="pt">Português</option>
+                    <option value="it">Italiano</option>
+                    <option value="hi">हिंदी</option>
+                    <option value="zh">中文</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="sidebar">
+            <div class="profile-section">
+                <div class="profile-pic">PP</div>
+                <div class="profile-name">Pramod Sai Potla</div>
+                <div class="profile-title">Full Stack Developer</div>
+                <div class="profile-views" onclick="showProfileStats()">Profile views: 1,247 <span class="status-indicator"></span></div>
+            </div>
+            <ul class="nav-menu">
+                <li class="active" onclick="showSection('feed')" data-section="feed">
+                    <span class="icon">📰</span>Feed
+                </li>
+                <li onclick="showSection('my-jobs')" data-section="my-jobs">
+                    <span class="icon">💼</span>My Jobs
+                </li>
+                <li onclick="showSection('connections')" data-section="connections">
+                    <span class="icon">👥</span>Connections
+                </li>
+                <li onclick="showSection('groups')" data-section="groups">
+                    <span class="icon">👥</span>Groups
+                </li>
+                <li onclick="showSection('events')" data-section="events">
+                    <span class="icon">📅</span>Events
+                </li>
+                <li onclick="showSection('learning')" data-section="learning">
+                    <span class="icon">🎓</span>Learning
+                </li>
+                <li onclick="showSection('insights')" data-section="insights">
+                    <span class="icon">📊</span>AI Insights
+                </li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <div class="tabs">
+                <div class="tab active" onclick="showTab('feed')" data-tab="feed">Feed</div>
+                <div class="tab" onclick="showTab('jobs')" data-tab="jobs">AI Jobs</div>
+                <div class="tab" onclick="showTab('network')" data-tab="network">Network</div>
+                <div class="tab" onclick="showTab('messages')" data-tab="messages">Messages</div>
+                <div class="tab" onclick="showTab('notifications')" data-tab="notifications">Notifications</div>
+            </div>
+
+            <div class="tab-content active" id="feed">
+                <div class="post-composer">
+                    <textarea class="post-input" placeholder="Share your thoughts, ask questions, or post job updates..." id="postInput"></textarea>
+                    <div class="post-actions">
+                        <div class="post-buttons">
+                            <button class="post-btn" onclick="addMedia('photo')">
+                                <span>📷</span> Photo
+                            </button>
+                            <button class="post-btn" onclick="addMedia('video')">
+                                <span>📹</span> Video
+                            </button>
+                            <button class="post-btn" onclick="addMedia('document')">
+                                <span>📄</span> Document
+                            </button>
+                            <button class="post-btn" onclick="postJob()">
+                                <span>💼</span> Job
+                            </button>
+                        </div>
+                        <div>
+                            <button class="voice-btn" id="voicePostBtn" onclick="startVoicePost()">🎤 Voice Post</button>
+                            <button class="btn btn-primary" onclick="publishPost()">Post</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feed-item">
+                    <div class="feed-header">
+                        <div class="feed-avatar">SM</div>
+                        <div class="feed-info">
+                            <h4>Sarah Mitchell <span class="status-indicator"></span></h4>
+                            <p>Senior Product Manager at TechCorp • 2h</p>
+                        </div>
+                    </div>
+                    <div class="feed-content">
+                        Exciting news! We're hiring for multiple AI and ML positions at TechCorp. Our AI-powered recruitment system has already matched 500+ candidates with perfect roles. If you're passionate about building the future of work, let's connect! 🚀
+                        <br><br>
+                        #AIJobs #TechCorp #WorkOnEarth #RemoteWork #MachineLearning
+                    </div>
+                    <div class="feed-actions">
+                        <div class="feed-action" onclick="likePost(this)">
+                            <span>👍</span> Like (42)
+                        </div>
+                        <div class="feed-action" onclick="commentPost(this)">
+                            <span>💬</span> Comment (8)
+                        </div>
+                        <div class="feed-action" onclick="sharePost(this)">
+                            <span>🔄</span> Share (12)
+                        </div>
+                        <div class="feed-action" onclick="sendPost(this)">
+                            <span>📤</span> Send
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feed-item">
+                    <div class="feed-header">
+                        <div class="feed-avatar">AI</div>
+                        <div class="feed-info">
+                            <h4>WorkOnEarth AI Assistant</h4>
+                            <p>AI-powered job matching • 1h</p>
+                        </div>
+                    </div>
+                    <div class="feed-content">
+                        🎯 Job Alert: Based on your skills profile, I found 5 new opportunities that match your expertise in React, Node.js, and AI. The top match is a Senior Full Stack Developer role at InnovateTech with a 95% compatibility score. Would you like me to help you apply?
+                        <br><br>
+                        <strong>Quick Actions:</strong>
+                        • View all matches
+                        • Start skill assessment
+                        • Update preferences
+                    </div>
+                    <div class="feed-actions">
+                        <div class="feed-action" onclick="applyNow()">
+                            <span>✅</span> Apply Now
+                        </div>
+                        <div class="feed-action" onclick="askAI()">
+                            <span>💬</span> Ask AI
+                        </div>
+                        <div class="feed-action" onclick="sharePost(this)">
+                            <span>🔄</span> Share
+                        </div>
+                        <div class="feed-action" onclick="speakPost(this)">
+                            <span>🔊</span> Listen
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feed-item">
+                    <div class="feed-header">
+                        <div class="feed-avatar">MJ</div>
+                        <div class="feed-info">
+                            <h4>Michael Johnson</h4>
+                            <p>Lead Developer at StartupXYZ • 4h</p>
+                        </div>
+                    </div>
+                    <div class="feed-content">
+                        Just completed my WorkOnEarth AI skill assessment! 🚀 The voice-based interview was incredible - felt like talking to a real recruiter. Got matched with 3 amazing remote positions already. This platform is game-changing for developers! 
+                        <br><br>
+                        Anyone else tried the AI assessment feature? What was your experience?
+                    </div>
+                    <div class="feed-actions">
+                        <div class="feed-action" onclick="likePost(this)">
+                            <span>👍</span> Like (127)
+                        </div>
+                        <div class="feed-action" onclick="commentPost(this)">
+                            <span>💬</span> Comment (23)
+                        </div>
+                        <div class="feed-action" onclick="sharePost(this)">
+                            <span>🔄</span> Share (8)
+                        </div>
+                        <div class="feed-action" onclick="sendPost(this)">
+                            <span>📤</span> Send
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="jobs">
+                <div style="margin-bottom: 20px;">
+                    <div style="display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap;">
+                        <button class="btn btn-primary" onclick="startAIJobSearch()">🤖 AI Job Search</button>
+                        <button class="btn btn-secondary" onclick="skillAssessment()">🧠 Skill Assessment</button>
+                        <button class="btn btn-secondary" onclick="voiceJobSearch()">🎤 Voice Search</button>
+                    </div>
+                </div>
+
+                <div class="job-card">
+                    <a href="#" class="job-title" onclick="viewJob(1)">Senior Full Stack Developer</a>
+                    <div class="job-company">InnovateTech Solutions</div>
+                    <div class="job-location">🌍 Remote • San Francisco, CA</div>
+                    <div class="job-description">
+                        Join our AI-driven development team building next-generation applications. We're looking for passionate developers who can work with React, Node.js, and machine learning technologies to create innovative solutions that impact millions of users worldwide.
+                    </div>
+                    <div class="job-skills">
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">AI/ML</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">AWS</span>
+                    </div>
+                    <div class="job-meta">
+                        <div class="job-actions">
+                            <button class="btn btn-primary" onclick="applyToJob(1)">Apply Now</button>
+                            <button class="btn btn-secondary" onclick="saveJob(1)">💾 Save Job</button>
+                            <button class="btn btn-secondary" onclick="voiceApply(1)">🎤 Voice Apply</button>
+                        </div>
+                        <div class="match-score">95% Match</div>
+                    </div>
+                </div>
+
+                <div class="job-card">
+                    <a href="#" class="job-title" onclick="viewJob(2)">AI Product Manager</a>
+                    <div class="job-company">DataFlow Inc.</div>
+                    <div class="job-location">🏢 New York, NY • Hybrid</div>
+                    <div class="job-description">
+                        Lead the development of AI-powered products that transform how businesses operate. Perfect for someone with technical background and product management experience in the AI/ML space.
+                    </div>
+                    <div class="job-skills">
+                        <span class="skill-tag">Product Management</span>
+                        <span class="skill-tag">AI/ML</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Agile</span>
+                        <span class="skill-tag">Analytics</span>
+                        <span class="skill-tag">Roadmapping</span>
+                    </div>
+                    <div class="job-meta">
+                        <div class="job-actions">
+                            <button class="btn btn-primary" onclick="applyToJob(2)">Apply Now</button>
+                            <button class="btn btn-secondary" onclick="saveJob(2)">💾 Save Job</button>
+                            <button class="btn btn-secondary" onclick="voiceApply(2)">🎤 Voice Apply</button>
+                        </div>
+                        <div class="match-score">87% Match</div>
+                    </div>
+                </div>
+
+                <div class="job-card">
+                    <a href="#" class="job-title" onclick="viewJob(3)">UX Designer - AI Products</a>
+                    <div class="job-company">Design First Studio</div>
+                    <div class="job-location">🌍 Remote • London, UK</div>
+                    <div class="job-description">
+                        Design intuitive user experiences for AI-powered applications. We're looking for creative minds who understand both design principles and emerging AI technologies.
+                    </div>
+                    <div class="job-skills">
+                        <span class="skill-tag">Figma</span>
+                        <span class="skill-tag">User Research</span>
+                        <span class="skill-tag">Prototyping</span>
+                        <span class="skill-tag">AI/UX</span>
+                        <span class="skill-tag">Design Systems</span>
+                        <span class="skill-tag">Usability Testing</span>
+                    </div>
+                    <div class="job-meta">
+                        <div class="job-actions">
+                            <button class="btn btn-primary" onclick="applyToJob(3)">Apply Now</button>
+                            <button class="btn btn-secondary" onclick="saveJob(3)">💾 Save Job</button>
+                            <button class="btn btn-secondary" onclick="voiceApply(3)">🎤 Voice Apply</button>
+                        </div>
+                        <div class="match-score">92% Match</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="network">
+                <div style="margin-bottom: 20px;">
+                    <button class="btn btn-primary" onclick="findConnections()">🔍 Find People</button>
+                    <button class="btn btn-secondary" onclick="inviteContacts()">📧 Invite Contacts</button>
+                    <button class="btn btn-secondary" onclick="voiceNetworking()">🎤 Voice Networking</button>
+                </div>
+                
+                <div class="connections-list">
+                    <div class="connection-item" onclick="viewProfile('sarah')">
+                        <div class="connection-avatar">SM</div>
+                        <div class="connection-info">
+                            <div class="connection-name">Sarah Mitchell</div>
+                            <div class="connection-title">Senior Product Manager at TechCorp</div>
+                        </div>
+                        <button class="btn btn-secondary" onclick="messageUser('sarah')">Message</button>
+                    </div>
+                    <div class="connection-item" onclick="viewProfile('michael')">
+                        <div class="connection-avatar">MJ</div>
+                        <div class="connection-info">
+                            <div class="connection-name">Michael Johnson</div>
+                            <div class="connection-title">Lead Developer at StartupXYZ</div>
+                        </div>
+                        <button class="btn btn-secondary" onclick="messageUser('michael')">Message</button>
+                    </div>
+                    <div class="connection-item" onclick="viewProfile('alice')">
+                        <div class="connection-avatar">AR</div>
+                        <div class="connection-info">
+                            <div class="connection-name">Alice Rodriguez</div>
+                            <div class="connection-title">UX Designer at CreativeAgency</div>
+                        </div>
+                        <button class="btn btn-primary" onclick="connectWith('alice')">Connect</button>
+                    </div>
+                    <div class="connection-item" onclick="viewProfile('david')">
+                        <div class="connection-avatar">DL</div>
+                        <div class="connection-info">
+                            <div class="connection-name">David Lee</div>
+                            <div class="connection-title">Data Scientist at AI Corp</div>
+                        </div>
+                        <button class="btn btn-primary" onclick="connectWith('david')">Connect</button>
+                    </div>
+                    <div class="connection-item" onclick="viewProfile('emma')">
+                        <div class="connection-avatar">EW</div>
+                        <div class="connection-info">
+                            <div class="connection-name">Emma Wilson</div>
+                            <div class="connection-title">HR Director at GlobalTech</div>
+                        </div>
+                        <button class="btn btn-secondary" onclick="messageUser('emma')">Message</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="messages">
+                <div style="margin-bottom: 20px;">
+                    <button class="btn btn-primary" onclick="composeMessage()">✏️ Compose</button>
+                    <button class="btn btn-secondary" onclick="voiceMessage()">🎤 Voice Message</button>
+                </div>
+                
+                <div class="messaging-preview">
+                    <div class="message-item" onclick="openConversation('sarah')">
+                        <div class="message-avatar">SM</div>
+                        <div class="message-content">
+                            <div class="message-name">Sarah Mitchell</div>
+                            <div class="message-preview">Thanks for connecting! I'd love to discuss the AI projects...</div>
+                        </div>
+                        <div class="message-time">2h</div>
+                    </div>
+                    <div class="message-item" onclick="openConversation('ai')">
+                        <div class="message-avatar">AI</div>
+                        <div class="message-content">
+                            <div class="message-name">WorkOnEarth AI</div>
+                            <div class="message-preview">Your job application for Senior Developer has been submitted!</div>
+                        </div>
+                        <div class="message-time">4h</div>
+                    </div>
+                    <div class="message-item" onclick="openConversation('michael')">
+                        <div class="message-avatar">MJ</div>
+                        <div class="message-content">
+                            <div class="message-name">Michael Johnson</div>
+                            <div class="message-preview">Hey! Saw your post about React. Want to collaborate?</div>
+                        </div>
+                        <div class="message-time">1d</div>
+                    </div>
+                    <div class="message-item" onclick="openConversation('recruiter')">
+                        <div class="message-avatar">HR</div>
+                        <div class="message-content">
+                            <div class="message-name">InnovateTech Recruiter</div>
+                            <div class="message-preview">We'd like to schedule an interview for the Full Stack position</div>
+                        </div>
+                        <div class="message-time">2d</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="notifications">
+                <div class="messaging-preview">
+                    <div class="notification-item" onclick="viewNotification(1)">
+                        <div class="notification-icon">💼</div>
+                        <div class="notification-content">
+                            <div class="notification-text">New job match: Senior Developer at TechStart (94% match)</div>
+                            <div class="notification-time">1 hour ago</div>
+                        </div>
+                    </div>
+                    <div class="notification-item" onclick="viewNotification(2)">
+                        <div class="notification-icon">👥</div>
+                        <div class="notification-content">
+                            <div class="notification-text">Sarah Mitchell wants to connect with you</div>
+                            <div class="notification-time">3 hours ago</div>
+                        </div>
+                    </div>
+                    <div class="notification-item" onclick="viewNotification(3)">
+                        <div class="notification-icon">💬</div>
+                        <div class="notification-content">
+                            <div class="notification-text">New message from InnovateTech Recruiter</div>
+                            <div class="notification-time">5 hours ago</div>
+                        </div>
+                    </div>
+                    <div class="notification-item" onclick="viewNotification(4)">
+                        <div class="notification-icon">🎯</div>
+                        <div class="notification-content">
+                            <div class="notification-text">AI recommends updating your skills: Add "Machine Learning"</div>
+                            <div class="notification-time">1 day ago</div>
+                        </div>
+                    </div>
+                    <div class="notification-item" onclick="viewNotification(5)">
+                        <div class="notification-icon">🔔</div>
+                        <div class="notification-content">
+                            <div class="notification-text">Your profile was viewed 23 times this week</div>
+                            <div class="notification-time">2 days ago</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-sidebar">
+            <div class="card">
+                <h3 style="margin-bottom: 16px; color: var(--gray-800);">🎯 AI Job Insights</h3>
+                <div style="margin-bottom: 12px;">
+                    <div style="font-weight: 600; margin-bottom: 4px;">Skills in Demand</div>
+                    <div style="color: var(--gray-600); font-size: 14px;">React, Python, AI/ML</div>
+                </div>
+                <div style="margin-bottom: 12px;">
+                    <div style="font-weight: 600; margin-bottom: 4px;">Profile Strength</div>
+                    <div style="color: var(--primary-blue); font-weight: 600;">87% Complete</div>
+                </div>
+                <div style="margin-bottom: 16px;">
+                    <div style="font-weight: 600; margin-bottom: 4px;">Job Matches Today</div>
+                    <div style="color: var(--primary-blue); font-weight: 600;">12 New Opportunities</div>
+                </div>
+                <button class="btn btn-primary" style="width: 100%;" onclick="improveProfile()">🚀 Improve Profile</button>
+            </div>
+
+            <div class="card">
+                <h3 style="margin-bottom: 16px; color: var(--gray-800);">💬 Recent Activity</h3>
+                <div class="messaging-preview" style="max-height: 200px;">
+                    <div class="message-item" onclick="viewActivity(1)">
+                        <div class="message-avatar" style="background: #4CAF50;">✅</div>
+                        <div class="message-content">
+                            <div class="message-name">Application Sent</div>
+                            <div class="message-preview">InnovateTech Solutions</div>
+                        </div>
+                        <div class="message-time">2h</div>
+                    </div>
+                    <div class="message-item" onclick="viewActivity(2)">
+                        <div class="message-avatar" style="background: var(--primary-blue);">👁️</div>
+                        <div class="message-content">
+                            <div class="message-name">Profile Viewed</div>
+                            <div class="message-preview">By TechCorp Recruiter</div>
+                        </div>
+                        <div class="message-time">4h</div>
+                    </div>
+                    <div class="message-item" onclick="viewActivity(3)">
+                        <div class="message-avatar" style="background: #FF9800;">🎯</div>
+                        <div class="message-content">
+                            <div class="message-name">Skill Match</div>
+                            <div class="message-preview">5 new job matches</div>
+                        </div>
+                        <div class="message-time">6h</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 style="margin-bottom: 16px; color: var(--gray-800);">🌟 Trending on WorkOnEarth</h3>
+                <div style="margin-bottom: 12px;">
+                    <div style="font-weight: 600; margin-bottom: 4px; color: var(--primary-blue); cursor: pointer;" onclick="viewTrending(1)">#AIJobs</div>
+                    <div style="color: var(--gray-600); font-size: 12px;">15,847 posts today</div>
+                </div>
+                <div style="margin-bottom: 12px;">
+                    <div style="font-weight: 600; margin-bottom: 4px; color: var(--primary-blue); cursor: pointer;" onclick="viewTrending(2)">#RemoteWork</div>
+                    <div style="color: var(--gray-600); font-size: 12px;">12,453 posts today</div>
+                </div>
+                <div style="margin-bottom: 12px;">
+                    <div style="font-weight: 600; margin-bottom: 4px; color: var(--primary-blue); cursor: pointer;" onclick="viewTrending(3)">#TechCareer</div>
+                    <div style="color: var(--gray-600); font-size: 12px;">8,921 posts today</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="ai-assistant" onclick="toggleAIChat()">🤖 AI Assistant</button>
+
+    <div class="ai-chat" id="aiChat">
+        <div class="ai-chat-header">
+            <span>🤖 WorkOnEarth AI Assistant</span>
+            <button class="ai-chat-close" onclick="toggleAIChat()">×</button>
+        </div>
+        <div class="ai-chat-body" id="aiChatBody">
+            <div class="ai-message">
+                👋 Hi! I'm your WorkOnEarth AI assistant. I can help you:
+                <br><br>
+                • Find perfect job matches
+                • Improve your profile
+                • Practice interviews
+                • Answer career questions
+                • Connect with the right people
+                <br><br>
+                What would you like to explore today?
+            </div>
+        </div>
+        <div class="ai-chat-input">
+            <input type="text" placeholder="Ask me anything about your career..." id="aiInput" onkeypress="handleAIInput(event)">
+            <button onclick="sendAIMessage()">Send</button>
+            <button onclick="voiceAIChat()" class="voice-btn" style="padding: 8px 12px; margin-left: 4px;">🎤</button>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let currentTab = 'feed';
+        let currentSection = 'feed';
+        let currentLanguage = 'en';
+        let isListening = false;
+        let recognition = null;
+        let synthesis = window.speechSynthesis;
+
+        // Initialize speech recognition
+        if ('webkitSpeechRecognition' in window) {
+            recognition = new webkitSpeechRecognition();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            recognition.lang = 'en-US';
+        }
+
+        // Navigation functions
+        function showTab(tabName) {
+            // Update tab buttons
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            const targetTab = document.querySelector(`[data-tab="${tabName}"]`);
+            const targetContent = document.getElementById(tabName);
+            
+            if (targetTab) targetTab.classList.add('active');
+            if (targetContent) targetContent.classList.add('active');
+            
+            // Update nav item
+            document.querySelector(`.nav-item[data-tab="${tabName}"]`)?.classList.add('active');
+            
+            currentTab = tabName;
+        }
+
+        function showSection(sectionName) {
+            document.querySelectorAll('.nav-menu li').forEach(item => {
+                item.classList.remove('active');
+            });
+            document.querySelector(`[data-section="${sectionName}"]`)?.classList.add('active');
+            currentSection = sectionName;
+        }
+
+        // Voice functionality
+        function startVoiceSearch() {
+            const btn = document.getElementById('voiceSearchBtn');
+            if (!recognition) {
+                alert('Voice recognition not supported in your browser');
+                return;
+            }
+
+            if (isListening) {
+                recognition.stop();
+                return;
+            }
+
+            isListening = true;
+            btn.classList.add('listening');
+            
+            recognition.onresult = function(event) {
+                const transcript = event.results[0][0].transcript;
+                document.getElementById('globalSearch').value = transcript;
+                performSearch(transcript);
+            };
+
+            recognition.onend = function() {
+                isListening = false;
+                btn.classList.remove('listening');
+            };
+
+            recognition.start();
+        }
+
+        function startVoicePost() {
+            const btn = document.getElementById('voicePostBtn');
+            if (!recognition) {
+                alert('Voice recognition not supported in your browser');
+                return;
+            }
+
+            if (isListening) {
+                recognition.stop();
+                return;
+            }
+
+            isListening = true;
+            btn.classList.add('listening');
+            
+            recognition.onresult = function(event) {
+                const transcript = event.results[0][0].transcript;
+                document.getElementById('postInput').value = transcript;
+            };
+
+            recognition.onend = function() {
+                isListening = false;
+                btn.classList.remove('listening');
+            };
+
+            recognition.start();
+        }
+
+        function voiceAIChat() {
+            if (!recognition) {
+                alert('Voice recognition not supported in your browser');
+                return;
+            }
+
+            recognition.onresult = function(event) {
+                const transcript = event.results[0][0].transcript;
+                document.getElementById('aiInput').value = transcript;
+                sendAIMessage();
+            };
+
+            recognition.start();
+        }
+
+        function speak(text) {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = getLanguageCode(currentLanguage);
+                utterance.rate = 0.8;
+                utterance.pitch = 1;
+                synthesis.speak(utterance);
+            }
+        }
+
+        function getLanguageCode(lang) {
+            const langCodes = {
+                'en': 'en-US',
+                'es': 'es-ES',
+                'fr': 'fr-FR',
+                'de': 'de-DE',
+                'pt': 'pt-BR',
+                'it': 'it-IT',
+                'hi': 'hi-IN',
+                'zh': 'zh-CN'
+            };
+            return langCodes[lang] || 'en-US';
+        }
+
+        // Job functions
+        function applyToJob(jobId) {
+            alert(`Applying to job ${jobId}... AI will help optimize your application!`);
+            addAIMessage(`Great choice! I'm preparing your application for job ${jobId}. I've analyzed the requirements and will customize your resume to highlight your matching skills. Would you like to practice the interview questions I predict they'll ask?`);
+        }
+
+        function saveJob(jobId) {
+            alert(`Job ${jobId} saved to your favorites!`);
+        }
+
+        function voiceApply(jobId) {
+            if (!recognition) {
+                alert('Voice recognition not supported in your browser');
+                return;
+            }
+            
+            alert('Starting voice application process...');
+            addAIMessage(`Let's start your voice application for this position. I'll ask you a few questions to create your personalized application. Ready to begin?`);
+        }
+
+        function viewJob(jobId) {
+            alert(`Opening detailed view for job ${jobId}`);
+        }
+
+        function startAIJobSearch() {
+            showTab('jobs');
+            addAIMessage(`I'm analyzing thousands of job opportunities based on your profile. Looking for roles that match your React, Node.js, and AI/ML skills... Found 47 potential matches! Should I show you the top 5 with highest compatibility scores?`);
+        }
+
+        function skillAssessment() {
+            alert('Starting AI-powered skill assessment...');
+            addAIMessage(`Welcome to the AI Skill Assessment! I'll evaluate your technical and soft skills through conversation. This usually takes 10-15 minutes. Shall we begin with some questions about your programming experience?`);
+        }
+
+        function voiceJobSearch() {
+            if (!recognition) {
+                alert('Voice recognition not supported in your browser');
+                return;
+            }
+            
+            recognition.onresult = function(event) {
+                const transcript = event.results[0][0].transcript;
+                performJobSearch(transcript);
+            };
+            
+            alert('Voice job search activated. Tell me what kind of job you\'re looking for...');
+            recognition.start();
+        }
+
+        function performJobSearch(query) {
+            showTab('jobs');
+            addAIMessage(`Searching for "${query}"... Found 12 relevant positions! I've ranked them by compatibility with your skills. The top match is a ${query} role with 94% compatibility. Would you like me to explain why it's such a good fit?`);
+        }
+
+        function performSearch(query) {
+            addAIMessage(`Searching for "${query}"... I found relevant jobs, people, and companies. Would you like me to show results for jobs first, or are you looking for specific people or companies?`);
+        }
+
+        // Social functions
+        function likePost(element) {
+            const likeBtn = element.querySelector('span');
+            const currentCount = parseInt(element.textContent.match(/\d+/)[0]);
+            element.innerHTML = `<span>👍</span> Like (${currentCount + 1})`;
+            element.style.color = 'var(--primary-blue)';
+        }
+
+        function commentPost(element) {
+            const postContent = element.closest('.feed-item').querySelector('.feed-content').textContent;
+            addAIMessage(`I see you want to comment on this post about ${postContent.substring(0, 50)}... Would you like me to suggest some thoughtful responses, or would you prefer to write your own comment?`);
+        }
+
+        function sharePost(element) {
+            alert('Post shared to your network!');
+        }
+
+        function sendPost(element) {
+            alert('Opening share dialog...');
+        }
+
+        function speakPost(element) {
+            const content = element.closest('.feed-item').querySelector('.feed-content').textContent;
+            speak(content);
+        }
+
+        function publishPost() {
+            const content = document.getElementById('postInput').value;
+            if (content.trim()) {
+                alert('Post published successfully!');
+                document.getElementById('postInput').value = '';
+                addAIMessage(`Great post! I've analyzed the content and suggest adding these hashtags for better visibility: #TechCareer #WorkOnEarth #Development. Should I help you boost this post's reach?`);
+            }
+        }
+
+        function addMedia(type) {
+            alert(`Adding ${type} to your post...`);
+        }
+
+        function postJob() {
+            alert('Opening job posting form...');
+        }
+
+        // Network functions
+        function viewProfile(userId) {
+            alert(`Opening profile for ${userId}`);
+        }
+
+        function messageUser(userId) {
+            showTab('messages');
+            alert(`Opening conversation with ${userId}`);
+        }
+
+        function connectWith(userId) {
+            alert(`Connection request sent to ${userId}!`);
+        }
+
+        function findConnections() {
+            addAIMessage(`I'm analyzing your network and interests to find relevant connections. Based on your profile, I recommend connecting with: 5 React developers, 3 AI/ML engineers, and 2 tech recruiters in your area. Should I show you the top recommendations?`);
+        }
+
+        function inviteContacts() {
+            alert('Opening contact invitation dialog...');
+        }
+
+        function voiceNetworking() {
+            if (!recognition) {
+                alert('Voice recognition not supported in your browser');
+                return;
+            }
+            
+            alert('Voice networking activated. Tell me what kind of people you want to connect with...');
+            addAIMessage(`Voice networking is active! Tell me: What type of professionals are you looking to connect with? For example, "Find React developers in San Francisco" or "Connect me with AI startup founders."`);
+        }
+
+        // Message functions
+        function openConversation(userId) {
+            alert(`Opening conversation with ${userId}`);
+        }
+
+        function composeMessage() {
+            alert('Opening message composer...');
+        }
+
+        function voiceMessage() {
+            if (!recognition) {
+                alert('Voice recognition not supported in your browser');
+                return;
+            }
+            
+            alert('Voice message feature activated...');
+        }
+
+        // Notification functions
+        function viewNotification(notificationId) {
+            alert(`Opening notification ${notificationId}`);
+        }
+
+        // Profile functions
+        function showProfileStats() {
+            addAIMessage(`Your profile analytics: 1,247 views this month (+23% vs last month), 89 search appearances, 15 new connection requests. Your profile strength is 87% - I can help you reach 95% by adding 2 more skills and 1 recommendation. Interested?`);
+        }
+
+        function improveProfile() {
+            addAIMessage(`Let's boost your profile! Here's what I recommend: 1) Add "Machine Learning" to your skills (high demand), 2) Request a recommendation from your current manager, 3) Update your summary with AI-optimized keywords. Should we start with the skills section?`);
+        }
+
+        // Activity functions
+        function viewActivity(activityId) {
+            alert(`Viewing activity ${activityId}`);
+        }
+
+        function viewTrending(trendId) {
+            alert(`Viewing trending topic ${trendId}`);
+        }
+
+        // AI Chat functions
+        function toggleAIChat() {
+            const chat = document.getElementById('aiChat');
+            chat.classList.toggle('active');
+        }
+
+        function handleAIInput(event) {
+            if (event.key === 'Enter') {
+                sendAIMessage();
+            }
+        }
+
+        function sendAIMessage() {
+            const input = document.getElementById('aiInput');
+            const message = input.value.trim();
+            
+            if (message) {
+                addUserMessage(message);
+                input.value = '';
+                
+                // Simulate AI response
+                setTimeout(() => {
+                    generateAIResponse(message);
+                }, 1000);
+            }
+        }
+
+        function addUserMessage(message) {
+            const chatBody = document.getElementById('aiChatBody');
+            const messageDiv = document.createElement('div');
+            messageDiv.style.cssText = 'margin-bottom: 16px; padding: 12px 16px; border-radius: 12px; background: var(--primary-blue); color: white; margin-left: 40px; text-align: right;';
+            messageDiv.textContent = message;
+            chatBody.appendChild(messageDiv);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        function addAIMessage(message) {
+            if (!document.getElementById('aiChat').classList.contains('active')) {
+                toggleAIChat();
+            }
+            
+            const chatBody = document.getElementById('aiChatBody');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'ai-message';
+            messageDiv.innerHTML = message;
+            chatBody.appendChild(messageDiv);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        function generateAIResponse(userMessage) {
+            const responses = {
+                'help': 'I can help you with job searching, profile optimization, skill assessment, networking, and career advice. What specific area interests you most?',
+                'jobs': 'Based on your profile, I found 12 new job matches today! The top match is a Senior Full Stack Developer role with 95% compatibility. Would you like me to show you the details?',
+                'skills': 'Your current skills are strong in React, Node.js, and JavaScript. I recommend adding "Machine Learning" and "TypeScript" to increase your job matches by 34%. Should I guide you through adding these?',
+                'salary': 'Based on your experience and location, the average salary for your role is $95,000-$125,000. You\'re positioned well for the higher end. Want me to find roles in your target range?',
+                'interview': 'I can help you practice interviews! I\'ve analyzed common questions for your target roles. Shall we start with technical questions or behavioral ones?',
+                'network': 'Your network has grown 15% this month! I recommend connecting with 5 more React developers and 3 AI professionals. Should I show you the top recommendations?',
+                'profile': 'Your profile strength is 87%. To reach 95%, add 2 skills, get 1 recommendation, and update your summary. This could increase job matches by 40%. Ready to start?'
+            };
+            
+            const lowerMessage = userMessage.toLowerCase();
+            let response = 'I understand you\'re asking about: "' + userMessage + '". ';
+            
+            for (let key in responses) {
+                if (lowerMessage.includes(key)) {
+                    response = responses[key];
+                    break;
+                }
+            }
+            
+            if (response === 'I understand you\'re asking about: "' + userMessage + '". ') {
+                response += 'I can help with job searching, profile optimization, skill development, networking, interview preparation, and career guidance. What would you like to explore?';
+            }
+            
+            addAIMessage(response);
+        }
+
+        // Language functions
+        function changeLanguage() {
+            const select = document.getElementById('languageSelect');
+            currentLanguage = select.value;
+            
+            if (recognition) {
+                recognition.lang = getLanguageCode(currentLanguage);
+            }
+            
+            addAIMessage(`Language changed to ${select.options[select.selectedIndex].text}. I can now communicate with you in your preferred language!`);
+        }
+
+        // Quick actions
+        function applyNow() {
+            showTab('jobs');
+            addAIMessage(`Great! I'm opening your top job matches. The Senior Full Stack Developer role at InnovateTech is 95% compatible with your skills. Should I start your application process?`);
+        }
+
+        function askAI() {
+            toggleAIChat();
+            addAIMessage(`Hi! I'm here to help with your career. You can ask me about job opportunities, salary insights, skill development, or anything else related to your professional growth. What's on your mind?`);
+        }
+
+        // Initialize event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Voice search button
+            document.getElementById('voiceSearchBtn').addEventListener('click', startVoiceSearch);
+            
+            // Global search
+            document.getElementById('globalSearch').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch(this.value);
+                }
+            });
+            
+            // Initialize with welcome message
+            setTimeout(() => {
+                addAIMessage(`Welcome to WorkOnEarth! 🌍 I'm your AI career assistant. I've analyzed your profile and found 12 new job opportunities that match your skills. Would you like to see them, or is there something specific I can help you with today?`);
+            }, 2000);
+        });
+
+        // Demo functions for showcase
+        function demoFeature(feature) {
+            const demos = {
+                'voice-search': () => {
+                    addAIMessage(`🎤 Voice Search Demo: Try saying "Find remote React developer jobs" or "Show me AI companies in San Francisco". I'll understand natural language and find exactly what you're looking for!`);
+                },
+                'skill-matching': () => {
+                    addAIMessage(`🧠 AI Skill Matching Demo: I analyze your skills against job requirements and provide compatibility scores. Your React + Node.js combination gives you 95% match with full-stack roles. Want to see how?`);
+                },
+                'voice-apply': () => {
+                    addAIMessage(`🗣️ Voice Application Demo: You can apply to jobs using voice! Just say "Apply to the InnovateTech position" and I'll guide you through a conversational application process. Much faster than traditional forms!`);
+                }
+            };
+            
+            if (demos[feature]) {
+                demos[feature]();
+            }
+        }
+
+        // Auto-demo showcase
+        setTimeout(() => {
+            demoFeature('voice-search');
+        }, 5000);
+    </script>
+</body>
+</html>
