@@ -1,4 +1,440 @@
-<!DOCTYPE html>
+<div class="tab-content" id="notifications">
+                <div class="messaging-preview">
+                    <div class="notification-item" onclick="viewNotification(1)">
+                        <div class="notification-icon">💼</div>
+                        <div class="notification-content">
+                            <div class="notification-text">New job match: Senior Developer at TechStart (94% match)</div>
+                            <div class="notification-time">1 hour ago</div>
+                        </div>
+                    </div>
+                    <div class="notification-item" onclick="viewNotification(2)">
+                        <div class="notification-icon">👥</div>
+                        <div class="notification-content">
+                            <div class="notification-text">Sarah Mitchell wants to connect with you</div>
+                            <div class="notification-time">3 hours ago</div>
+                        </div>
+                    </div>
+                    <div class="notification-item" onclick="viewNotification(3)">
+                        <div class="notification-icon">💬</div>
+                        <div class="notification-content">
+                            <div class="notification-text">New message from InnovateTech Recruiter</div>
+                            <div class="notification-time">5 hours ago</div>
+                        </div>
+                    </div>
+                    <div class="notification-item" onclick="viewNotification(4)">
+                        <div class="notification-icon">🎯</div>
+                        <div class="notification-content">
+                            <div class="notification-text">AI recommends updating your skills: Add "Machine Learning"</div>
+                            <div class="notification-time">1 day ago</div>
+                        </div>
+                    </div>
+                    <div class="notification-item" onclick="viewNotification(5)">
+                        <div class="notification-icon">🔔</div>
+                        <div class="notification-content">
+                            <div class="notification-text">Your profile was viewed 23 times this week</div>
+                            <div class="notification-time">2 days ago</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-sidebar">
+            <div class="card">
+                <h3 style="margin-bottom: 16px; color: var(--gray-800);">🎯 AI Job Insights</h3>
+                <div style="margin-bottom: 12px;">
+                    <div style="font-weight: 600; margin-bottom: 4px;">Skills in Demand</div>
+                    <div style="color: var(--gray-600); font-size: 14px;">React, Python, AI/ML</div>
+                </div>
+                <div style="margin-bottom: 12px;">
+                    <div style="font-weight: 600; margin-bottom: 4px;">Profile Strength</div>
+                    <div style="color: var(--primary-blue); font-weight: 600;">87% Complete</div>
+                </div>
+                <div style="margin-bottom: 16px;">
+                    <div style="font-weight: 600; margin-bottom: 4px;">Job Matches Today</div>
+                    <div style="color: var(--primary-blue); font-weight: 600;">12 New Opportunities</div>
+                </div>
+                <button class="btn btn-primary" style="width: 100%;" onclick="improveProfile()">🚀 Improve Profile</button>
+            </div>
+
+            <div class="card">
+                <h3 style="margin-bottom: 16px; color: var(--gray-800);">💬 Recent Activity</h3>
+                <div class="messaging-preview" style="max-height: 200px;">
+                    <div class="message-item" onclick="viewActivity(1)">
+                        <div class="message-avatar" style="background: #4CAF50;">✅</div>
+                        <div class="message-content">
+                            <div class="message-name">Application Sent</div>
+                            <div class="message-preview">InnovateTech Solutions</div>
+                        </div>
+                        <div class="message-time">2h</div>
+                    </div>
+                    <div class="message-item" onclick="viewActivity(2)">
+                        <div class="message-avatar" style="background: var(--primary-blue);">👁️</div>
+                        <div class="message-content">
+                            <div class="message-name">Profile Viewed</div>
+                            <div class="message-preview">By TechCorp Recruiter</div>
+                        </div>
+                        <div class="message-time">4h</div>
+                    </div>
+                    <div class="message-item" onclick="viewActivity(3)">
+                        <div class="message-avatar" style="background: #FF9800;">🎯</div>
+                        <div class="message-content">
+                            <div class="message-name">Skill Match</div>
+                            <div class="message-preview">5 new job matches</div>
+                        </div>
+                        <div class="message-time">6h</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 style="margin-bottom: 16px; color: var(--gray-800);">🌟 Trending on WorkOnEarth</h3>
+                <div style="margin-bottom: 12px;">
+                    <div style="font-weight: 600; margin-bottom: 4px; color: var(--primary-blue); cursor: pointer;" onclick="viewTrending(1)">#AIJobs</div>
+                    <div style="color: var(--gray-600); font-size: 12px;">15,847 posts today</div>
+                </div>
+                <div style="margin-bottom: 12px;">
+                    <div style="font-weight: 600; margin-bottom: 4px; color: var(--primary-blue); cursor: pointer;" onclick="viewTrending(2)">#RemoteWork</div>
+                    <div style="color: var(--gray-600); font-size: 12px;">12,453 posts today</div>
+                </div>
+                <div style="margin-bottom: 12px;">
+                    <div style="font-weight: 600; margin-bottom: 4px; color: var(--primary-blue); cursor: pointer;" onclick="viewTrending(3)">#TechCareer</div>
+                    <div style="color: var(--gray-600); font-size: 12px;">8,921 posts today</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="ai-assistant" onclick="toggleAIChat()">🤖 AI Assistant</button>
+
+    <div class="ai-chat" id="aiChat">
+        <div class="ai-chat-header">
+            <span>🤖 WorkOnEarth AI Assistant</span>
+            <button class="ai-chat-close" onclick="toggleAIChat()">×</button>
+        </div>
+        <div class="ai-chat-body" id="aiChatBody">
+            <div class="ai-message">
+                👋 Hi! I'm your WorkOnEarth AI assistant. I can help you:
+                <br><br>
+                • Find perfect job matches
+                • Improve your profile
+                • Practice interviews
+                • Answer career questions
+                • Connect with the right people
+                • <strong>Recruit top talent with AI</strong>
+                <br><br>
+                What would you like to explore today?
+            </div>
+        </div>
+        <div class="ai-chat-input">
+            <input type="text" placeholder="Ask me anything about your career..." id="aiInput" onkeypress="handleAIInput(event)">
+            <button onclick="sendAIMessage()">Send</button>
+            <button onclick="voiceAIChat()" class="voice-btn" style="padding: 8px 12px; margin-left: 4px;">🎤</button>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let currentTab = 'feed';
+        let currentSection = 'feed';
+        let currentLanguage = 'en';
+        let isListening = false;
+        let recognition = null;
+        let synthesis = window.speechSynthesis;
+
+        // Initialize speech recognition
+        if ('webkitSpeechRecognition' in window) {
+            recognition = new webkitSpeechRecognition();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            recognition.lang = 'en-US';
+        }
+
+        // Navigation functions
+        function showTab(tabName) {
+            // Update tab buttons
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            const targetTab = document.querySelector(`[data-tab="${tabName}"]`);
+            const targetContent = document.getElementById(tabName);
+            
+            if (targetTab) targetTab.classList.add('active');
+            if (targetContent) targetContent.classList.add('active');
+            
+            // Update nav item
+            document.querySelector(`.nav-item[data-tab="${tabName}"]`)?.classList.add('active');
+            
+            currentTab = tabName;
+        }
+
+        function showSection(sectionName) {
+            document.querySelectorAll('.nav-menu li').forEach(item => {
+                item.classList.remove('active');
+            });
+            document.querySelector(`[data-section="${sectionName}"]`)?.classList.add('active');
+            currentSection = sectionName;
+        }
+
+        // Recruiting functions
+        function postNewJob() {
+            addAIMessage(`🎯 Let's create a new job posting! I'll help you write an optimized job description that attracts top talent. What position are you hiring for?`);
+        }
+
+        function bulkMessage() {
+            addAIMessage(`📧 Bulk messaging activated! I can help you send personalized messages to multiple candidates. What type of outreach would you like to do? (e.g., "Message all React developers in San Francisco")`);
+        }
+
+        function voiceRecruiting() {
+            if (!recognition) {
+                alert('Voice recognition not supported in your browser');
+                return;
+            }
+            
+            addAIMessage(`🎤 Voice recruiting is active! You can say things like: "Find senior developers with React experience" or "Show me UX designers in New York" and I'll search our entire candidate database.`);
+            
+            recognition.onresult = function(event) {
+                const transcript = event.results[0][0].transcript;
+                performCandidateSearch(transcript);
+            };
+            
+            recognition.start();
+        }
+
+        function performCandidateSearch(query) {
+            addAIMessage(`Searching for candidates: "${query}"... Found 23 potential matches! I've ranked them by compatibility and availability. The top candidate is Sarah Chen (96% match). Would you like me to show her profile or draft an outreach message?`);
+        }
+
+        function viewCandidate(candidateId) {
+            addAIMessage(`Opening ${candidateId}'s profile... This candidate has a 96% compatibility score with your requirements. They have 5 years of React experience, currently employed but open to opportunities. Should I draft a personalized outreach message?`);
+        }
+
+        function reachOut(candidateId) {
+            addAIMessage(`I'm drafting a personalized message for ${candidateId}. Based on their profile, I recommend highlighting: remote flexibility, AI projects, and growth opportunities. Would you like me to send this message or would you like to review it first?`);
+        }
+
+        function manageCandidates(jobId) {
+            showTab('recruiting');
+            addAIMessage(`Managing candidates for job ${jobId}. You have 47 applications - I've pre-screened them and identified 12 top candidates. Would you like me to schedule interviews with the top 3 candidates automatically?`);
+        }
+
+        function editJob(jobId) {
+            addAIMessage(`Editing job ${jobId}. I notice this position has been open for 3 days with a 25% qualification rate. I recommend adjusting the requirements to increase qualified applicants. Should I suggest specific changes?`);
+        }
+
+        function viewAnalytics(jobId) {
+            addAIMessage(`📊 Analytics for job ${jobId}: 47 applications, 25% qualification rate, 12 days average time-to-hire. Performance is above average! Top traffic sources: AI recommendations (67%), referrals (23%), job boards (10%). Want detailed insights?`);
+        }
+
+        function viewCandidateDetails(candidateId) {
+            addAIMessage(`Viewing ${candidateId}'s full profile... AI Analysis: Strong technical skills, cultural fit score 89%, salary expectations align with budget, available for interviews next week. Recommendation: High priority candidate. Proceed with interview?`);
+        }
+
+        function reviewApplication(candidateId) {
+            addAIMessage(`Reviewing ${candidateId}'s application... AI Assessment: 95% skill match, 4 years relevant experience, portfolio shows strong React work, currently employed but actively looking. Recommendation: Move to interview stage. Should I send interview invitation?`);
+        }
+
+        function scheduleInterview(candidateId) {
+            addAIMessage(`Scheduling interview for ${candidateId}... I've checked your calendar and their availability. Best slots: Tomorrow 2pm, Friday 10am, or Monday 3pm. I can send the invitation automatically. Which time works best?`);
+        }
+
+        function trackOffer(candidateId) {
+            addAIMessage(`Tracking offer for ${candidateId}... Offer sent 4 days ago, expires in 3 days. Based on similar candidates, 78% acceptance rate expected. Should I send a follow-up message or extend the deadline?`);
+        }
+
+        function onboard(candidateId) {
+            addAIMessage(`🎉 Congratulations! ${candidateId} accepted and starts Monday. I've prepared their onboarding checklist: equipment setup, access credentials, team introductions, and first-week schedule. Should I send the welcome package?`);
+        }
+
+        function viewAllApplications() {
+            addAIMessage(`Showing all 47 applications... AI has pre-sorted them by compatibility. Top 10 candidates have 90%+ match scores. Would you like me to batch process the bottom 20 applications or schedule bulk interviews for the top candidates?`);
+        }
+
+        function viewAllInterviews() {
+            addAIMessage(`Managing 5 active interviews... 2 technical rounds scheduled, 2 final rounds pending, 1 offer discussion. I can help coordinate schedules, prepare interview questions, or analyze feedback. What would you like to focus on?`);
+        }
+
+        function viewAllOffers() {
+            addAIMessage(`Tracking all offers... 1 pending (expires soon), 1 accepted (starting Monday). Based on market data, your offer competitiveness is above average. Need help with negotiations or onboarding preparation?`);
+        }
+
+        // Voice functionality (existing functions with added recruiting features)
+        function startVoiceSearch() {
+            const btn = document.getElementById('voiceSearchBtn');
+            if (!recognition) {
+                alert('Voice recognition not supported in your browser');
+                return;
+            }
+
+            if (isListening) {
+                recognition.stop();
+                return;
+            }
+
+            isListening = true;
+            btn.classList.add('listening');
+            
+            recognition.onresult = function(event) {
+                const transcript = event.results[0][0].transcript;
+                document.getElementById('globalSearch').value = transcript;
+                
+                // Smart routing based on search content
+                if (transcript.toLowerCase().includes('candidates') || transcript.toLowerCase().includes('hire') || transcript.toLowerCase().includes('recruit')) {
+                    showTab('recruiting');
+                    performCandidateSearch(transcript);
+                } else {
+                    performSearch(transcript);
+                }
+            };
+
+            recognition.onend = function() {
+                isListening = false;
+                btn.classList.remove('listening');
+            };
+
+            recognition.start();
+        }
+
+        // Updated AI responses to include recruiting
+        function generateAIResponse(userMessage) {
+            const responses = {
+                'help': 'I can help you with job searching, profile optimization, recruiting, candidate sourcing, interview scheduling, and career advice. What specific area interests you most?',
+                'jobs': 'Based on your profile, I found 12 new job matches today! The top match is a Senior Full Stack Developer role with 95% compatibility. Would you like me to show you the details?',
+                'recruit': 'I can help you find top talent! I\'ve identified 23 potential candidates for your open positions. The AI has pre-screened them based on skills, experience, and cultural fit. Should I show you the top recommendations?',
+                'hire': 'Your hiring pipeline looks strong! 47 active applications, 12 qualified candidates, 5 in interviews. I recommend focusing on the 2 candidates in final rounds. Need help making decisions or extending offers?',
+                'candidates': 'I found excellent candidates for your roles! Sarah Chen (96% match), Marcus Johnson (94% match), and Lisa Wang (92% match) are all highly qualified. Would you like me to draft personalized outreach messages?',
+                'interview': 'I can help with both interview prep for job seekers AND scheduling interviews for recruiters! Which would you like? For recruiting: I can coordinate 5 pending interviews and suggest optimal time slots.',
+                'skills': 'Your current skills are strong in React, Node.js, and JavaScript. For recruiting: I recommend targeting candidates with these skills plus TypeScript and AWS. Should I search for candidates or help improve your profile?',
+                'salary': 'Based on your experience and location, the average salary for your role is $95,000-$125,000. For recruiting: Market rate for senior developers is $110k-$140k. Your offers are competitive. Want market analysis?',
+                'network': 'Your network has grown 15% this month! For recruiting: I can tap into my network of 50,000+ tech professionals to find candidates. Should I show networking opportunities or candidate recommendations?',
+                'profile': 'Your profile strength is 87%. For recruiting: Your company profile attracts top talent with 89% positive response rate. Ready to optimize either your personal profile or employer brand?'
+            };
+            
+            const lowerMessage = userMessage.toLowerCase();
+            let response = 'I understand you\'re asking about: "' + userMessage + '". ';
+            
+            for (let key in responses) {
+                if (lowerMessage.includes(key)) {
+                    response = responses[key];
+                    break;
+                }
+            }
+            
+            if (response === 'I understand you\'re asking about: "' + userMessage + '". ') {
+                response += 'I can help with job searching, recruiting, profile optimization, candidate sourcing, interview coordination, and career guidance for both job seekers and recruiters. What would you like to explore?';
+            }
+            
+            addAIMessage(response);
+        }
+
+        // Add recruiting-specific demo functions
+        function demoRecruiting() {
+            addAIMessage(`🎯 Recruiting Demo: Try clicking the "Recruiting" tab to see your hiring dashboard! Features include: AI candidate recommendations, application tracking, interview scheduling, and hiring analytics. You can also use voice commands like "Find React developers in San Francisco."`);
+        }
+
+        // All other existing functions remain the same...
+        function startVoicePost() {
+            const btn = document.getElementById('voicePostBtn');
+            if (!recognition) {
+                alert('Voice recognition not supported in your browser');
+                return;
+            }
+
+            if (isListening) {
+                recognition.stop();
+                return;
+            }
+
+            isListening = true;
+            btn.classList.add('listening');
+            
+            recognition.onresult = function(event) {
+                const transcript = event.results[0][0].transcript;
+                document.getElementById('postInput').value = transcript;
+            };
+
+            recognition.onend = function() {
+                isListening = false;
+                btn.classList.remove('listening');
+            };
+
+            recognition.start();
+        }
+
+        function voiceAIChat() {
+            if (!recognition) {
+                alert('Voice recognition not supported in your browser');
+                return;
+            }
+
+            recognition.onresult = function(event) {
+                const transcript = event.results[0][0].transcript;
+                document.getElementById('aiInput').value = transcript;
+                sendAIMessage();
+            };
+
+            recognition.start();
+        }
+
+        function speak(text) {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = getLanguageCode(currentLanguage);
+                utterance.rate = 0.8;
+                utterance.pitch = 1;
+                synthesis.speak(utterance);
+            }
+        }
+
+        function getLanguageCode(lang) {
+            const langCodes = {
+                'en': 'en-US',
+                'es': 'es-ES',
+                'fr': 'fr-FR',
+                'de': 'de-DE',
+                'pt': 'pt-BR',
+                'it': 'it-IT',
+                'hi': 'hi-IN',
+                'zh': 'zh-CN'
+            };
+            return langCodes[lang] || 'en-US';
+        }
+
+        // All existing job, social, network, message, notification, profile, activity, AI chat functions remain unchanged...
+        
+        // Initialize event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('voiceSearchBtn').addEventListener('click', startVoiceSearch);
+            
+            document.getElementById('globalSearch').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch(this.value);
+                }
+            });
+            
+            setTimeout(() => {
+                addAIMessage(`Welcome to WorkOnEarth! 🌍 I'm your AI career assistant for both job seekers AND recruiters. I've analyzed your profile and found 12 new job opportunities. I can also help you find top talent for your open positions. Would you like to see job matches or explore recruiting features?`);
+            }, 2000);
+            
+            setTimeout(() => {
+                demoRecruiting();
+            }, 8000);
+        });
+
+        // Include all other existing functions (job functions, social functions, etc.) here...
+        // [Previous functions remain exactly the same]
+    </script>
+</body>
+</html><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -1041,6 +1477,10 @@
                     <div class="icon">💼</div>
                     <span>Jobs</span>
                 </a>
+                <a href="#" class="nav-item" onclick="showTab('recruiting')" data-tab="recruiting">
+                    <div class="icon">🎯</div>
+                    <span>Recruiting</span>
+                </a>
                 <a href="#" class="nav-item" onclick="showTab('messages')" data-tab="messages">
                     <div class="icon">💬</div>
                     <span>Messages</span>
@@ -1104,6 +1544,7 @@
             <div class="tabs">
                 <div class="tab active" onclick="showTab('feed')" data-tab="feed">Feed</div>
                 <div class="tab" onclick="showTab('jobs')" data-tab="jobs">AI Jobs</div>
+                <div class="tab" onclick="showTab('recruiting')" data-tab="recruiting">Recruiting</div>
                 <div class="tab" onclick="showTab('network')" data-tab="network">Network</div>
                 <div class="tab" onclick="showTab('messages')" data-tab="messages">Messages</div>
                 <div class="tab" onclick="showTab('notifications')" data-tab="notifications">Notifications</div>
@@ -1403,8 +1844,285 @@
                 </div>
             </div>
 
-            <div class="tab-content" id="notifications">
-                <div class="messaging-preview">
+            <div class="tab-content" id="recruiting">
+                <div style="margin-bottom: 24px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <h2 style="color: var(--gray-800); margin: 0;">🎯 Recruiter Dashboard</h2>
+                        <div style="display: flex; gap: 12px;">
+                            <button class="btn btn-primary" onclick="postNewJob()">+ Post Job</button>
+                            <button class="btn btn-secondary" onclick="bulkMessage()">📧 Bulk Message</button>
+                            <button class="btn btn-secondary" onclick="voiceRecruiting()">🎤 Voice Search</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Recruiting Stats -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px;">
+                        <div style="background: linear-gradient(135deg, #4CAF50, #45a049); color: white; padding: 20px; border-radius: 12px;">
+                            <div style="font-size: 2rem; font-weight: bold; margin-bottom: 4px;">127</div>
+                            <div style="opacity: 0.9;">Active Applications</div>
+                        </div>
+                        <div style="background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue)); color: white; padding: 20px; border-radius: 12px;">
+                            <div style="font-size: 2rem; font-weight: bold; margin-bottom: 4px;">43</div>
+                            <div style="opacity: 0.9;">Candidates in Pipeline</div>
+                        </div>
+                        <div style="background: linear-gradient(135deg, #FF9800, #F57C00); color: white; padding: 20px; border-radius: 12px;">
+                            <div style="font-size: 2rem; font-weight: bold; margin-bottom: 4px;">8</div>
+                            <div style="opacity: 0.9;">Open Positions</div>
+                        </div>
+                        <div style="background: linear-gradient(135deg, #9C27B0, #7B1FA2); color: white; padding: 20px; border-radius: 12px;">
+                            <div style="font-size: 2rem; font-weight: bold; margin-bottom: 4px;">12</div>
+                            <div style="opacity: 0.9;">Days Avg. Time to Hire</div>
+                        </div>
+                    </div>
+
+                    <!-- AI Candidate Recommendations -->
+                    <div style="background: var(--light-blue); border: 2px solid var(--secondary-blue); border-radius: 12px; padding: 20px; margin-bottom: 24px;">
+                        <h3 style="color: var(--dark-blue); margin-bottom: 16px;">🤖 AI Candidate Recommendations</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px;">
+                            <div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid var(--primary-blue);">
+                                <div style="font-weight: bold; margin-bottom: 8px;">Sarah Chen - Senior React Developer</div>
+                                <div style="color: var(--gray-600); margin-bottom: 8px;">5 years exp • San Francisco, CA</div>
+                                <div style="color: var(--primary-blue); font-weight: bold; margin-bottom: 8px;">96% Match for Senior Full Stack Role</div>
+                                <div style="display: flex; gap: 8px;">
+                                    <button class="btn btn-primary" style="font-size: 12px; padding: 6px 12px;" onclick="viewCandidate('sarah-chen')">View Profile</button>
+                                    <button class="btn btn-secondary" style="font-size: 12px; padding: 6px 12px;" onclick="reachOut('sarah-chen')">Reach Out</button>
+                                </div>
+                            </div>
+                            <div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid var(--primary-blue);">
+                                <div style="font-weight: bold; margin-bottom: 8px;">Marcus Johnson - AI Engineer</div>
+                                <div style="color: var(--gray-600); margin-bottom: 8px;">3 years exp • Remote</div>
+                                <div style="color: var(--primary-blue); font-weight: bold; margin-bottom: 8px;">94% Match for AI Product Manager</div>
+                                <div style="display: flex; gap: 8px;">
+                                    <button class="btn btn-primary" style="font-size: 12px; padding: 6px 12px;" onclick="viewCandidate('marcus-johnson')">View Profile</button>
+                                    <button class="btn btn-secondary" style="font-size: 12px; padding: 6px 12px;" onclick="reachOut('marcus-johnson')">Reach Out</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Active Job Postings -->
+                <div style="margin-bottom: 24px;">
+                    <h3 style="color: var(--gray-800); margin-bottom: 16px;">📋 Active Job Postings</h3>
+                    
+                    <div class="job-card" style="border-left: 4px solid #4CAF50;">
+                        <div style="display: flex; justify-content: between; align-items: start; margin-bottom: 12px;">
+                            <div style="flex: 1;">
+                                <div class="job-title">Senior Full Stack Developer</div>
+                                <div class="job-company">InnovateTech Solutions</div>
+                                <div class="job-location">🌍 Remote • San Francisco, CA</div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div style="background: #4CAF50; color: white; padding: 4px 12px; border-radius: 12px; font-size: 12px; margin-bottom: 8px;">ACTIVE</div>
+                                <div style="color: var(--gray-600); font-size: 14px;">Posted 3 days ago</div>
+                            </div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; margin: 16px 0;">
+                            <div style="text-align: center; padding: 12px; background: var(--gray-100); border-radius: 8px;">
+                                <div style="font-size: 1.5rem; font-weight: bold; color: var(--primary-blue);">47</div>
+                                <div style="font-size: 12px; color: var(--gray-600);">Applications</div>
+                            </div>
+                            <div style="text-align: center; padding: 12px; background: var(--gray-100); border-radius: 8px;">
+                                <div style="font-size: 1.5rem; font-weight: bold; color: var(--primary-blue);">12</div>
+                                <div style="font-size: 12px; color: var(--gray-600);">Qualified</div>
+                            </div>
+                            <div style="text-align: center; padding: 12px; background: var(--gray-100); border-radius: 8px;">
+                                <div style="font-size: 1.5rem; font-weight: bold; color: var(--primary-blue);">5</div>
+                                <div style="font-size: 12px; color: var(--gray-600);">Interviewed</div>
+                            </div>
+                            <div style="text-align: center; padding: 12px; background: var(--gray-100); border-radius: 8px;">
+                                <div style="font-size: 1.5rem; font-weight: bold; color: var(--primary-blue);">2</div>
+                                <div style="font-size: 12px; color: var(--gray-600);">Final Round</div>
+                            </div>
+                        </div>
+                        <div class="job-meta">
+                            <div class="job-actions">
+                                <button class="btn btn-primary" onclick="manageCandidates(1)">Manage Candidates</button>
+                                <button class="btn btn-secondary" onclick="editJob(1)">Edit Job</button>
+                                <button class="btn btn-secondary" onclick="viewAnalytics(1)">📊 Analytics</button>
+                            </div>
+                            <div style="display: flex; gap: 8px; align-items: center;">
+                                <div class="match-score" style="background: #4CAF50;">Active</div>
+                                <div style="color: var(--gray-600); font-size: 12px;">25% hire rate</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="job-card" style="border-left: 4px solid #FF9800;">
+                        <div style="display: flex; justify-content: between; align-items: start; margin-bottom: 12px;">
+                            <div style="flex: 1;">
+                                <div class="job-title">UX Designer - AI Products</div>
+                                <div class="job-company">Design First Studio</div>
+                                <div class="job-location">🏢 New York, NY • Hybrid</div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div style="background: #FF9800; color: white; padding: 4px 12px; border-radius: 12px; font-size: 12px; margin-bottom: 8px;">URGENT</div>
+                                <div style="color: var(--gray-600); font-size: 14px;">Posted 1 week ago</div>
+                            </div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; margin: 16px 0;">
+                            <div style="text-align: center; padding: 12px; background: var(--gray-100); border-radius: 8px;">
+                                <div style="font-size: 1.5rem; font-weight: bold; color: var(--primary-blue);">23</div>
+                                <div style="font-size: 12px; color: var(--gray-600);">Applications</div>
+                            </div>
+                            <div style="text-align: center; padding: 12px; background: var(--gray-100); border-radius: 8px;">
+                                <div style="font-size: 1.5rem; font-weight: bold; color: var(--primary-blue);">8</div>
+                                <div style="font-size: 12px; color: var(--gray-600);">Qualified</div>
+                            </div>
+                            <div style="text-align: center; padding: 12px; background: var(--gray-100); border-radius: 8px;">
+                                <div style="font-size: 1.5rem; font-weight: bold; color: var(--primary-blue);">3</div>
+                                <div style="font-size: 12px; color: var(--gray-600);">Interviewed</div>
+                            </div>
+                            <div style="text-align: center; padding: 12px; background: var(--gray-100); border-radius: 8px;">
+                                <div style="font-size: 1.5rem; font-weight: bold; color: var(--primary-blue);">1</div>
+                                <div style="font-size: 12px; color: var(--gray-600);">Offer Made</div>
+                            </div>
+                        </div>
+                        <div class="job-meta">
+                            <div class="job-actions">
+                                <button class="btn btn-primary" onclick="manageCandidates(2)">Manage Candidates</button>
+                                <button class="btn btn-secondary" onclick="editJob(2)">Edit Job</button>
+                                <button class="btn btn-secondary" onclick="viewAnalytics(2)">📊 Analytics</button>
+                            </div>
+                            <div style="display: flex; gap: 8px; align-items: center;">
+                                <div class="match-score" style="background: #FF9800;">Urgent</div>
+                                <div style="color: var(--gray-600); font-size: 12px;">13% hire rate</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Candidate Pipeline -->
+                <div style="margin-bottom: 24px;">
+                    <h3 style="color: var(--gray-800); margin-bottom: 16px;">👥 Candidate Pipeline</h3>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
+                        <!-- Application Stage -->
+                        <div style="background: white; border: 2px solid var(--gray-200); border-radius: 12px; padding: 16px;">
+                            <h4 style="color: var(--gray-800); margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+                                📝 Applied (47)
+                            </h4>
+                            <div class="candidate-card" onclick="viewCandidateDetails('alex-rivera')">
+                                <div class="connection-avatar" style="margin-right: 12px;">AR</div>
+                                <div style="flex: 1;">
+                                    <div style="font-weight: bold; margin-bottom: 2px;">Alex Rivera</div>
+                                    <div style="color: var(--gray-600); font-size: 12px;">Full Stack Developer • 4 years</div>
+                                    <div style="color: var(--primary-blue); font-size: 12px; font-weight: bold;">95% Match</div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div style="color: var(--gray-500); font-size: 11px;">2 days ago</div>
+                                    <button class="btn btn-primary" style="font-size: 10px; padding: 4px 8px; margin-top: 4px;" onclick="reviewApplication('alex-rivera')">Review</button>
+                                </div>
+                            </div>
+                            <div class="candidate-card" onclick="viewCandidateDetails('maria-garcia')">
+                                <div class="connection-avatar" style="margin-right: 12px;">MG</div>
+                                <div style="flex: 1;">
+                                    <div style="font-weight: bold; margin-bottom: 2px;">Maria Garcia</div>
+                                    <div style="color: var(--gray-600); font-size: 12px;">React Developer • 3 years</div>
+                                    <div style="color: var(--primary-blue); font-size: 12px; font-weight: bold;">89% Match</div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div style="color: var(--gray-500); font-size: 11px;">1 day ago</div>
+                                    <button class="btn btn-primary" style="font-size: 10px; padding: 4px 8px; margin-top: 4px;" onclick="reviewApplication('maria-garcia')">Review</button>
+                                </div>
+                            </div>
+                            <div style="text-align: center; margin-top: 12px;">
+                                <button class="btn btn-secondary" style="font-size: 12px;" onclick="viewAllApplications()">View All 47</button>
+                            </div>
+                        </div>
+
+                        <!-- Interview Stage -->
+                        <div style="background: white; border: 2px solid var(--secondary-blue); border-radius: 12px; padding: 16px;">
+                            <h4 style="color: var(--dark-blue); margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+                                🎯 Interview (5)
+                            </h4>
+                            <div class="candidate-card" onclick="viewCandidateDetails('david-kim')">
+                                <div class="connection-avatar" style="margin-right: 12px; background: var(--secondary-blue);">DK</div>
+                                <div style="flex: 1;">
+                                    <div style="font-weight: bold; margin-bottom: 2px;">David Kim</div>
+                                    <div style="color: var(--gray-600); font-size: 12px;">Senior Developer • 6 years</div>
+                                    <div style="color: var(--primary-blue); font-size: 12px; font-weight: bold;">Technical Round</div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div style="color: var(--gray-500); font-size: 11px;">Tomorrow 2pm</div>
+                                    <button class="btn btn-primary" style="font-size: 10px; padding: 4px 8px; margin-top: 4px;" onclick="scheduleInterview('david-kim')">Schedule</button>
+                                </div>
+                            </div>
+                            <div class="candidate-card" onclick="viewCandidateDetails('lisa-wang')">
+                                <div class="connection-avatar" style="margin-right: 12px; background: var(--secondary-blue);">LW</div>
+                                <div style="flex: 1;">
+                                    <div style="font-weight: bold; margin-bottom: 2px;">Lisa Wang</div>
+                                    <div style="color: var(--gray-600); font-size: 12px;">Product Manager • 5 years</div>
+                                    <div style="color: var(--primary-blue); font-size: 12px; font-weight: bold;">Final Round</div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div style="color: var(--gray-500); font-size: 11px;">Friday 10am</div>
+                                    <button class="btn btn-primary" style="font-size: 10px; padding: 4px 8px; margin-top: 4px;" onclick="scheduleInterview('lisa-wang')">Reschedule</button>
+                                </div>
+                            </div>
+                            <div style="text-align: center; margin-top: 12px;">
+                                <button class="btn btn-secondary" style="font-size: 12px;" onclick="viewAllInterviews()">View All 5</button>
+                            </div>
+                        </div>
+
+                        <!-- Offer Stage -->
+                        <div style="background: white; border: 2px solid #4CAF50; border-radius: 12px; padding: 16px;">
+                            <h4 style="color: #2E7D32; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+                                ✅ Offers (2)
+                            </h4>
+                            <div class="candidate-card" onclick="viewCandidateDetails('john-smith')">
+                                <div class="connection-avatar" style="margin-right: 12px; background: #4CAF50;">JS</div>
+                                <div style="flex: 1;">
+                                    <div style="font-weight: bold; margin-bottom: 2px;">John Smith</div>
+                                    <div style="color: var(--gray-600); font-size: 12px;">Senior Engineer • 7 years</div>
+                                    <div style="color: #2E7D32; font-size: 12px; font-weight: bold;">Offer Sent</div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div style="color: var(--gray-500); font-size: 11px;">Expires in 3 days</div>
+                                    <button class="btn btn-primary" style="font-size: 10px; padding: 4px 8px; margin-top: 4px; background: #4CAF50;" onclick="trackOffer('john-smith')">Track</button>
+                                </div>
+                            </div>
+                            <div class="candidate-card" onclick="viewCandidateDetails('sarah-brown')">
+                                <div class="connection-avatar" style="margin-right: 12px; background: #4CAF50;">SB</div>
+                                <div style="flex: 1;">
+                                    <div style="font-weight: bold; margin-bottom: 2px;">Sarah Brown</div>
+                                    <div style="color: var(--gray-600); font-size: 12px;">UX Designer • 4 years</div>
+                                    <div style="color: #2E7D32; font-size: 12px; font-weight: bold;">Accepted! 🎉</div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div style="color: var(--gray-500); font-size: 11px;">Starts Monday</div>
+                                    <button class="btn btn-primary" style="font-size: 10px; padding: 4px 8px; margin-top: 4px; background: #4CAF50;" onclick="onboard('sarah-brown')">Onboard</button>
+                                </div>
+                            </div>
+                            <div style="text-align: center; margin-top: 12px;">
+                                <button class="btn btn-secondary" style="font-size: 12px;" onclick="viewAllOffers()">View All Offers</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Recruiting Insights -->
+                <div style="background: linear-gradient(135deg, var(--light-blue), #E8F5E8); border-radius: 12px; padding: 24px; margin-bottom: 24px;">
+                    <h3 style="color: var(--dark-blue); margin-bottom: 16px;">🤖 AI Recruiting Insights</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px;">
+                        <div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid var(--primary-blue);">
+                            <div style="font-weight: bold; margin-bottom: 8px; color: var(--gray-800);">🎯 Top Performing Sourcing Channel</div>
+                            <div style="color: var(--primary-blue); font-size: 1.2rem; font-weight: bold;">WorkOnEarth AI Recommendations</div>
+                            <div style="color: var(--gray-600); font-size: 12px;">67% of hires from AI suggestions</div>
+                        </div>
+                        <div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #4CAF50;">
+                            <div style="font-weight: bold; margin-bottom: 8px; color: var(--gray-800);">⚡ Interview-to-Hire Rate</div>
+                            <div style="color: #4CAF50; font-size: 1.2rem; font-weight: bold;">34% (+12% vs avg)</div>
+                            <div style="color: var(--gray-600); font-size: 12px;">AI pre-screening improves quality</div>
+                        </div>
+                        <div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #FF9800;">
+                            <div style="font-weight: bold; margin-bottom: 8px; color: var(--gray-800);">📈 Recommended Action</div>
+                            <div style="color: #FF9800; font-size: 1.2rem; font-weight: bold;">Expand React Search</div>
+                            <div style="color: var(--gray-600); font-size: 12px;">High demand, quality candidates available</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
                     <div class="notification-item" onclick="viewNotification(1)">
                         <div class="notification-icon">💼</div>
                         <div class="notification-content">
